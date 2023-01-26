@@ -38,7 +38,7 @@ INSERT [dbo].[StartEndContinuosRanges] ([id], [log_id]) VALUES (10, 18)
 GO
 SET IDENTITY_INSERT [dbo].[StartEndContinuosRanges] OFF
 GO
-
+ 
 
 SELECT log_id
 , ROW_NUMBER() OVER (order by Log_id) as rn
@@ -52,6 +52,7 @@ With grouped_data As (
 	, log_id - ROW_NUMBER() OVER (order by Log_id) as diff
 	From [dbo].[StartEndContinuosRanges]
 )
+
 
 SELECT MIN(log_id) as start_if
 , MAX(log_id) as end_id
